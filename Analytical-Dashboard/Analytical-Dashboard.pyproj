@@ -64,6 +64,7 @@
     <Folder Include="dashboard\templates\dashboard\Employees\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="dashboard.sql" />
     <Content Include="errors_you_may_encounter.txt" />
     <Content Include="requirements.txt" />
     <Content Include="dashboard\static\app\content\bootstrap.css" />
