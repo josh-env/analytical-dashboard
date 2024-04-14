@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 # Application references
 # https://docs.djangoproject.com/en/2.1/ref/settings/#std:setting-INSTALLED_APPS
 INSTALLED_APPS = [
-    'app',
+    'dashboard.apps.DashboardAppConfig',
     # Add your apps here to enable them
     'django.contrib.admin',
     'django.contrib.auth',
@@ -73,14 +73,21 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Analytical_Dashboard.wsgi.application'
-# Database
+# Database configuration below will be set to the local database server for sql. Server Type: Database Engine, Server Name: (localdb)\MSSQLLocalDB Authentication: Windows Authentication
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'default': {
+            'ENGINE': 'mssql',
+            'NAME': 'dashboard_DB',          
+            'HOST': '(localdb)\MSSQLLocalDB',        
+            'OPTIONS': {
+                'driver': 'ODBC Driver 17 for SQL Server',
+                'trusted_connection': 'yes', #for windows authentication
+            },
+        },
     }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -99,10 +106,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
+# Internationalization set the app to calculate time using Eastern Standard Time (EST)
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'EST'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True

@@ -4,6 +4,7 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <Name>Analytical-Dashboard</Name>
     <RootNamespace>Analytical-Dashboard</RootNamespace>
+    <SuppressConfigureTestFrameworkPrompt>true</SuppressConfigureTestFrameworkPrompt>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -15,7 +16,7 @@
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
-    <WebBrowserUrl>http://localhost</WebBrowserUrl>
+    <WebBrowserUrl>http://localhost/</WebBrowserUrl>
     <LaunchProvider>Django launcher</LaunchProvider>
     <DjangoSettingsModule>Analytical_Dashboard.settings</DjangoSettingsModule>
     <OutputPath>.</OutputPath>
@@ -30,12 +31,18 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="app\forms.py" />
-    <Compile Include="app\models.py" />
-    <Compile Include="app\tests.py" />
-    <Compile Include="app\views.py" />
-    <Compile Include="app\__init__.py" />
-    <Compile Include="app\migrations\__init__.py" />
+    <Compile Include="dashboard\apps.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="dashboard\forms.py" />
+    <Compile Include="dashboard\models.py" />
+    <Compile Include="dashboard\tests.py" />
+    <Compile Include="dashboard\urls.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="dashboard\views.py" />
+    <Compile Include="dashboard\__init__.py" />
+    <Compile Include="dashboard\migrations\__init__.py" />
     <Compile Include="manage.py" />
     <Compile Include="Analytical_Dashboard\__init__.py" />
     <Compile Include="Analytical_Dashboard\settings.py" />
@@ -43,48 +50,50 @@
     <Compile Include="Analytical_Dashboard\wsgi.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\" />
-    <Folder Include="app\migrations\" />
-    <Folder Include="app\static\" />
-    <Folder Include="app\static\app\" />
-    <Folder Include="app\static\app\content\" />
-    <Folder Include="app\static\app\fonts\" />
-    <Folder Include="app\static\app\scripts\" />
-    <Folder Include="app\templates\" />
-    <Folder Include="app\templates\app\" />
+    <Folder Include="dashboard\" />
+    <Folder Include="dashboard\migrations\" />
+    <Folder Include="dashboard\static\" />
+    <Folder Include="dashboard\static\app\" />
+    <Folder Include="dashboard\static\app\content\" />
+    <Folder Include="dashboard\static\app\fonts\" />
+    <Folder Include="dashboard\static\app\scripts\" />
+    <Folder Include="dashboard\templates\" />
+    <Folder Include="dashboard\templates\dashboard\" />
     <Folder Include="Analytical_Dashboard\" />
+    <Folder Include="dashboard\templates\dashboard\Admin\" />
+    <Folder Include="dashboard\templates\dashboard\Employees\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="errors_you_may_encounter.txt" />
     <Content Include="requirements.txt" />
-    <Content Include="db.sqlite3" />
-    <Content Include="app\static\app\content\bootstrap.css" />
-    <Content Include="app\static\app\content\bootstrap.min.css" />
-    <Content Include="app\static\app\content\site.css" />
-    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="app\static\app\scripts\bootstrap.js" />
-    <Content Include="app\static\app\scripts\bootstrap.min.js" />
-    <Content Include="app\static\app\scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="app\static\app\scripts\jquery-1.10.2.js" />
-    <Content Include="app\static\app\scripts\jquery-1.10.2.min.js" />
-    <Content Include="app\static\app\scripts\jquery-1.10.2.min.map" />
-    <Content Include="app\static\app\scripts\jquery.validate-vsdoc.js" />
-    <Content Include="app\static\app\scripts\jquery.validate.js" />
-    <Content Include="app\static\app\scripts\jquery.validate.min.js" />
-    <Content Include="app\static\app\scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="app\static\app\scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="app\static\app\scripts\modernizr-2.6.2.js" />
-    <Content Include="app\static\app\scripts\respond.js" />
-    <Content Include="app\static\app\scripts\respond.min.js" />
-    <Content Include="app\static\app\scripts\_references.js" />
-    <Content Include="app\templates\app\about.html" />
-    <Content Include="app\templates\app\contact.html" />
-    <Content Include="app\templates\app\index.html" />
-    <Content Include="app\templates\app\layout.html" />
-    <Content Include="app\templates\app\login.html" />
-    <Content Include="app\templates\app\loginpartial.html" />
+    <Content Include="dashboard\static\app\content\bootstrap.css" />
+    <Content Include="dashboard\static\app\content\bootstrap.min.css" />
+    <Content Include="dashboard\static\app\content\site.css" />
+    <Content Include="dashboard\static\app\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="dashboard\static\app\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="dashboard\static\app\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="dashboard\static\app\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="dashboard\static\app\scripts\bootstrap.js" />
+    <Content Include="dashboard\static\app\scripts\bootstrap.min.js" />
+    <Content Include="dashboard\static\app\scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="dashboard\static\app\scripts\jquery-1.10.2.js" />
+    <Content Include="dashboard\static\app\scripts\jquery-1.10.2.min.js" />
+    <Content Include="dashboard\static\app\scripts\jquery-1.10.2.min.map" />
+    <Content Include="dashboard\static\app\scripts\jquery.validate-vsdoc.js" />
+    <Content Include="dashboard\static\app\scripts\jquery.validate.js" />
+    <Content Include="dashboard\static\app\scripts\jquery.validate.min.js" />
+    <Content Include="dashboard\static\app\scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="dashboard\static\app\scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="dashboard\static\app\scripts\modernizr-2.6.2.js" />
+    <Content Include="dashboard\static\app\scripts\respond.js" />
+    <Content Include="dashboard\static\app\scripts\respond.min.js" />
+    <Content Include="dashboard\static\app\scripts\_references.js" />
+    <Content Include="dashboard\templates\dashboard\about.html" />
+    <Content Include="dashboard\templates\dashboard\contact.html" />
+    <Content Include="dashboard\templates\dashboard\index.html" />
+    <Content Include="dashboard\templates\dashboard\layout.html" />
+    <Content Include="dashboard\templates\dashboard\login.html" />
+    <Content Include="dashboard\templates\dashboard\loginpartial.html" />
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.html">

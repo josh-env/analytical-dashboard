@@ -1,0 +1,44 @@
+
+0.5) pip is not installed at the C:\ drive or pip was not installed/updated at the drive where your OS is installed.
+	instructions: refer to docs here to install pip: https://packaging.python.org/en/latest/tutorials/installing-packages/
+
+1) virtual environment for project was not created.
+	instructions: 
+	- In solution explorer 
+	- Right click Python Environments
+	- Select Add environment.  Default environment is where you have installed python311 
+	- folder typically can be found at the path where your os is installed
+
+	- provide name for environment 
+	Purpose of the virtual environment can be found here: https://learn.microsoft.com/en-us/visualstudio/python/learn-django-in-visual-studio-step-01-project-and-solution?view=vs-2022#Understand-purpose-of-virtual-environments 
+
+1.5) mssql-django is not installed to operate with 3rd party driver sql server management studio.
+	instructions:
+	 - once pip is installed and the virtual environment is configured. 
+	 - at the base of the project environment 
+	 - run the command: pip install mssql-django
+
+2) creation of apps.py file for you app was not created.
+	instructions: 
+	- create file called apps.py 
+	- inside the file write the following code below: 
+
+	from django.apps import AppConfig
+
+	class DashboardAppConfig(AppConfig):
+		name = '<name of your app goes here>'
+
+2.5) creation of urls.py file for you app was not created.
+
+	instructions:
+	 - create the file called urls.py	 
+	 - Write the following code below to get started with your url definitions
+
+from django.urls import path
+
+from . import views
+from typing_extensions import Self
+
+urlpatterns = [
+    path("", views.index, name="index"),
+]

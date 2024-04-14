@@ -1,22 +1,15 @@
-"""
-Definition of urls for Analytical_Dashboard.
-"""
-
 from datetime import datetime
-from django.urls import path
+from django.urls import path, include
 from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView
-from app import forms, views
-
-
+from dashboard import forms
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('contact/', views.contact, name='contact'),
-    path('about/', views.about, name='about'),
-    path('login/',
+    path('', include("dashboard.urls")),
+    path('admin/', admin.site.urls),
+       path('dashboard/login/',
          LoginView.as_view
          (
-             template_name='app/login.html',
+             template_name='dashboard/login.html',
              authentication_form=forms.BootstrapAuthenticationForm,
              extra_context=
              {
@@ -25,6 +18,6 @@ urlpatterns = [
              }
          ),
          name='login'),
-    path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
-    path('admin/', admin.site.urls),
+
+    path('dashboard/logout/', LogoutView.as_view(next_page='/'), name='logout'),    
 ]
