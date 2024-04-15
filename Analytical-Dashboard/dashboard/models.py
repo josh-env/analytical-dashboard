@@ -43,7 +43,7 @@ class UserGroup(models.Model):
     def __str__(self):
         return self.user_group_Name
     @property
-    def get_reports_value(self):
+    def get_usergroup_value(self):
         return '{}{}'.format(self.user_group_Name, self.user_group_Creation_DT)
 
     
